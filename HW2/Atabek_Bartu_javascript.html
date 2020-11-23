@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Counter-Controlled Loops in JavaScript</title>
+</head>
+<body>
+  <script>
+    // Counter-Controlled Loops in JavaScript
+    console.log("Counter-Controlled Loops in JavaScript");
+    console.log("--------------------");
+
+    // 1. What are the types of loop control variables?
+    // For the C-style for loops, the loop control variable could have integer or
+    // floating point types. For the for/in statement loops, iterable type objects
+    // are accepted as it loops through the properties of an object.
+
+    // for loop with integer type control variable
+    for (var i = 0; i < 5; i++) {
+      console.log(i);
+    }
+
+    console.log("\n");
+
+    // for loop with floating type control variable
+    var count = 1;
+    for (var index = 0.5; index <= 5; index += 0.5) {
+      console.log(count);
+      count++;
+    }
+
+    console.log("\n");
+
+    // for/in style for loop iterating over range of numbers [1,6]
+    var person = {fname:"Steve", lname:"Jobs", age:56};
+    for (var attribute in person) {
+      console.log(person[attribute]);
+    }
+
+    console.log("--------------------");
+
+    // 2. What are the scopes of loop control variables?
+    // In JavaScript for the C-style for loops and the for/in loops loop control
+    // variables are accessible both inside the for loop block and also they
+    // could be accessed outside. However, in the case where the 'let' keyword
+    // is used for the control variable it is only accessible within the loop
+    // block and cannot be accessed outside the scope.
+
+    // index can be accessed outside the loop scope
+    var index = 5;
+    for (; index < 10; index++) {
+      console.log("Index is: " + index);
+    }
+
+    console.log("\n");
+    console.log("After the loop index is: " + i);
+    console.log("\n");
+
+    // index can be accessed outside the loop scope
+    for (var a = 0; a < 3; a++) {
+      console.log("A is: " + a);
+    }
+
+    console.log("\n");
+    console.log("After the loop A is: " + a);
+    console.log("\n");
+
+    // let keyword constraints the scope of the control variable to the inside
+    // of the for loop block
+    for (let b = 0; b < 3; b++) {
+      console.log("B is: " + b);
+    }
+
+    // can't access b because it's out of scope
+    console.log("\n");
+    console.log("After the loop b can't be accessed");
+    // console.log("\nB is: " + b);
+
+    console.log("--------------------");
+
+    // 3. Is it legal for the loop control variable or loop parameters to be
+    // changed in the loop, and if so, does the change affect loop control?
+    // In JavaScript it is legal for to change the loop control variables or
+    // loop parameters in the loop for the C-style for loop and it affects the
+    // loop control. In the case of for/in style loop it is also allowed to
+    // change the loop variables but it would would not result in any effects.
+
+    // changing control variable affects loop control
+    var index = 1;
+    for (; index < 6; index++) {
+      index = 10;
+      console.log("Index is: " + index + "\n");
+    }
+
+    console.log("\n");
+
+    // appended element does not affect the control
+    var isAppended = 0;
+    var colors = ["red", "blue", "green"];
+    for (var color in colors) {
+      if (isAppended == 0) {
+            colors.push("magenta", "orange");
+            isAppended = 1
+      }
+      console.log(colors[color]);
+    }
+    console.log(colors); // new colors added but not displayed in the loop
+
+    console.log("--------------------");
+
+    // 4. Are the loop parameters evaluated only once, or once for every iteration?
+    // In JavaScript loop parameters are evaluated once for every iteration in
+    // C-style, for the for/in styled loops a single evaluation at the start is
+    // done which means that the creation of the loop objects are done once
+    // however, the loop variable is assigned in each iteration to the next
+    // element until the end of the collection is reached.
+
+    function counter_statement() {
+      console.log("Statement evaluated");
+      return 5;
+    }
+
+    // counter_statement called once for every iteration
+    for (var index = 0; index < counter_statement(); index++) {
+    }
+    
+  </script>
+</body>
+</html>
